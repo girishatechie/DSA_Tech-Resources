@@ -1,0 +1,33 @@
+void kthFromEnd(int k)
+    {
+        // create two pointers slow and fast
+        // initially pointing to head.
+        node* slow = head;
+        node* fast = head;
+ 
+        
+        if (head == NULL) {
+            cout << "List is empty" << endl;
+            return;
+        }
+ 
+        // move fast pointer to the k-th node from beginning.
+        for (int i = 1; i < k; i++) {
+            fast = fast->next;
+            if (fast == NULL) {
+                cout << k
+                     << " is greater than no. of nodes in "
+                        "the list"
+                     << endl;
+                return;
+            }
+        }
+ 
+        // move the slow and fast pointers by one node until
+        // fast pointer reaches end of the list.
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        cout << slow->data << endl;
+    }
