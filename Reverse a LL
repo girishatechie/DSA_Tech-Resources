@@ -1,0 +1,17 @@
+void reverse_LL()
+    {
+        Node* current = head;
+        Node* prev = NULL;
+        Node* next = NULL;
+ 
+        while (current != NULL) {
+            //Store next so that it isn't lost
+            next = current->next;
+            // Reverse current node's pointer
+            current->next = prev;
+            // Move both pointers one position ahead.
+            prev = current;
+            current = next;
+        }
+        head = prev;   //swap head and tail
+    }
