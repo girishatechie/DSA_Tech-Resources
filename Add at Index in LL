@@ -1,0 +1,50 @@
+class Node
+{
+    public:
+    int data;
+    Node *next;
+};
+// current size of Linked List
+int size = 0;
+
+void insert(Node** head, int data){
+    Node* new_node = new Node();
+    
+    new_node->data = data;
+    new_node->next = *head;
+    *head = new_node;
+    size++;
+}
+
+//to insert at a given position
+void insertPosition(int pos, int data, Node** head)
+{
+
+    Node* new_node = new Node();
+    new_node->data = data;
+    new_node->next = NULL;
+    
+    // Invalid positions
+    if(pos < 0 || pos > size) 
+        printf("Invalid"); 
+        
+    // inserting first node
+    else if(pos == 0){
+        new_node->next = *head; 
+        *head = new_node;
+        size++;
+    }
+    
+    else 
+    {
+        Node* temp = *head; 
+        
+        // traverse till the current (pos-1)th node
+        while(--pos > 1){
+            temp = temp->next;
+        }
+        new_node->next= temp->next;
+        temp->next = new_node;
+        size++;
+    }
+}
