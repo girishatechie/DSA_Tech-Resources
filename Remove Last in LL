@@ -1,0 +1,26 @@
+struct Node {
+    int data;
+    struct Node* next;
+};
+ 
+Node* removeLastNode(struct Node* head)
+{
+    if (head == NULL)
+        return NULL;
+ 
+    if (head->next == NULL) {
+        delete head;
+        return NULL;
+    }
+    
+    Node* second_last = head;
+    while (second_last->next->next != NULL)
+        second_last = second_last->next;
+ 
+    // Delete last node
+    delete (second_last->next);
+    
+    second_last->next = NULL;
+ 
+    return head;
+}
