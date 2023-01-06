@@ -1,0 +1,23 @@
+class Node {
+public:
+    int data;
+    Node* next;
+};
+ 
+/* function to get the intersection point of two linked
+lists head1 and head2 */
+Node* getIntesectionNode(Node* head1, Node* head2)
+{
+    while (head2) {
+        Node* temp = head1;
+        while (temp) {
+            // if both Nodes are same
+            if (temp == head2)
+                return head2;
+            temp = temp->next;
+        }
+        head2 = head2->next;
+    }
+    // intersection is not present between the lists
+    return NULL;
+}
