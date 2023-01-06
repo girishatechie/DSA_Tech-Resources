@@ -1,0 +1,33 @@
+struct node {
+    char data;
+    struct node* next;
+};
+ 
+// Initial parameters to this function are &head and head
+bool isPalindrome(struct node** left,
+                      struct node* right)
+{
+    /* stop recursion when right becomes NULL */
+    if (right == NULL)
+        return true;
+ 
+    /* If sub-list is not palindrome then no need to
+    check for current left and right, return false */
+    bool isp = isPalindrome(left, right->next);
+    if (isp == false)
+        return false;
+ 
+    /* Check values at current left and right */
+    bool isp1 = (right->data == (*left)->data);
+ 
+    /* Move left to next node */
+    *left = (*left)->next;
+ 
+    return isp1;
+}
+ 
+// A wrapper over isPalindrome()
+bool isPalindrome(struct node* head)
+{
+    return isPalindrome(&head, head);
+}
